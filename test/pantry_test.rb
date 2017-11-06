@@ -150,7 +150,4 @@ class PantryTest < Minitest::Test
 
     assert_equal ({"Pickles" => 4, "Peanuts" => 2}), pantry.how_many_can_i_make
   end
-
-
-
 end
