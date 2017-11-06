@@ -20,4 +20,13 @@ class Pantry
     end
   end
 
+  def print_shopping_list
+    list = []
+    shopping_list.each do |ingredient, amount|
+      list << "* #{ingredient}: #{amount}\n"
+    end
+    list.join.chomp("\n")
+    # binding.pry
+  end
+
 end
