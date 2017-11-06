@@ -16,7 +16,7 @@ class Pantry
   end
 
   def add_to_shopping_list(recipe)
-    b = recipe.ingredients.each_pair do |ingredient, amount|
+    recipe.ingredients.each_pair do |ingredient, amount|
       shopping_list[ingredient] += amount
     end
   end
@@ -34,9 +34,33 @@ class Pantry
   end
 
   def what_can_i_make
-    cookbook.map do |recipe|
-      recipe.name
+    cookbook_select.map { |recipe| recipe.name }
+  end
+
+  def cookbook_select
+    cookbook.select { |recipe| check_cookbook(recipe) }
+  end
+
+  def check_cookbook(recipe)
+    recipe.ingredients.each_pair do |key, value|
+      break if stock_check(key) < value
     end
+  end
+
+  def how_many_can_i_make
+    recipes = {}
+    cookbook_select.each do |recipe|
+      results = []
+      amount_calculate(recipes, results, recipe)
+    end
+    recipes
+  end
+
+  def amount_calculate(recipes, results, recipe)
+    recipe.ingredients.each_pair do |key, value|
+      results << (stock_check(key) / value)
+    end
+    recipes[recipe.name] = results.max.to_i
   end
 
 end
