@@ -3,7 +3,7 @@ class Pantry
   attr_reader :stock, :shopping_list
   def initialize
     @stock = Hash.new(0)
-    @shopping_list = {}
+    @shopping_list = Hash.new(0)
   end
 
   def stock_check(item)
@@ -15,7 +15,9 @@ class Pantry
   end
 
   def add_to_shopping_list(recipe)
-    shopping_list.merge!(recipe.ingredients)
+    b = recipe.ingredients.each_pair do |ingredient, amount|
+      shopping_list[ingredient] += amount
+    end
   end
 
 end
