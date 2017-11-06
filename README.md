@@ -1,3 +1,5 @@
+Gabriel Afflitto
+
 ## Module 1 Assessment Starter Kit
 
 This project will serve as the jumping-off point for several module one assessment challenges. Before your assessment, you should clone this repository, `bundle`, and make sure all the tests pass by running `rake`.
